@@ -1,0 +1,83 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-spinner/paper-spinner.html">
+
+<!--
+# `<material-loader />`
+## Material design inspired loading dialog.
+
+Basic use: `<material-loader loading="true"></material-loader>`
+
+Setting a duration: `<material-loader loading="true" duration="3000"></material-loader>`
+
+Changing the content of the loader: `<material-loader loading="true" content="loading stuff..."></material-loader>`
+
+@demo demo/index.html
+-->
+
+<dom-module id="material-loader">
+	<template>
+		<style>
+			#loader {
+				background: white;
+				width: 10rem;
+				padding: 1rem;
+				box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+
+			#loadingText {
+				float: right;
+				margin-right: 15%;
+				margin-bottom: 0;
+				margin-top: 5px;
+			}
+		</style>
+
+		<div id="loader">
+			<paper-spinner id="spinner" active="[[loading]]"></paper-spinner>
+			<p id="loadingText">[[content]]</p>
+		</div>
+	</template>
+
+	<script>
+        Polymer({
+          is: "material-loader",
+          properties: {
+            loading: {
+              type: Boolean,
+              notify: true,
+              reflectToAttribute: true
+            },
+						duration: {
+							type: Number,
+							notify: true,
+							reflectToAttribute: true
+						},
+						content: {
+							type: String,
+							notify: true,
+							reflectToAttribute: true
+						}
+          },
+          attributeChanged: function(name) {
+            if (this.getAttribute(name) === 'false') {
+              this.$.loader.style.display = 'none';
+            }
+          },
+					attached: function() {
+						if (this.duration) {
+							setTimeout(() => {
+								this.$.loader.style.display = 'none';
+							}, this.duration);
+						}
+
+						if (!this.content) {
+							this.content = 'Loading...'
+						}
+					}
+        });
+      </script>
+</dom-module>

@@ -1,0 +1,26 @@
+{
+  "name": "material-loader",
+  "description": "Material design inspired loading dialog",
+  "main": "material-loader.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0",
+    "paper-spinner": "PolymerElements/paper-spinner#^1.2.1"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "web-component-tester": "^4.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  },
+  "homepage": "https://github.com/jgw96/material-loader",
+  "_release": "46eeac565c",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "46eeac565c9c6dcab5eb8d8f5f037640776a0386"
+  },
+  "_source": "git://github.com/jgw96/material-loader.git",
+  "_target": "master",
+  "_originalSource": "jgw96/material-loader",
+  "_direct": true
+}

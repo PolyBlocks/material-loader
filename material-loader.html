@@ -45,6 +45,30 @@ Changing the content of the loader: `<material-loader loading="true" content="lo
 	<script>
         Polymer({
           is: "material-loader",
+					present: function() {
+						this.$.loader.style.display = 'block';
+						this.$.loader.animate(
+							[
+							  { opacity: 0 },
+								{ opacity: 1 }
+							], {
+								duration: 500
+							}
+						);
+					},
+					dismiss: function() {
+						let endingAnimation = this.$.loader.animate(
+							[
+								{ opacity: 1 },
+								{ opacity: 0 }
+							], {
+							  duration: 500
+							}
+						);
+						endingAnimation.onfinish = () => {
+							this.$.loader.style.display = 'none';
+						}
+					},
           properties: {
             loading: {
               type: Boolean,
@@ -65,12 +89,33 @@ Changing the content of the loader: `<material-loader loading="true" content="lo
           attributeChanged: function(name) {
             if (this.getAttribute(name) === 'false') {
               this.$.loader.style.display = 'none';
-            }
+            } else if (this.getAttribute(name) === 'true') {
+							this.$.loader.style.display = 'block';
+						}
           },
 					attached: function() {
+						this.$.loader.animate(
+							[
+							  { opacity: 0 },
+								{ opacity: 1 }
+							], {
+								duration: 500
+							}
+						);
+
 						if (this.duration) {
 							setTimeout(() => {
-								this.$.loader.style.display = 'none';
+								let endingAnimation = this.$.loader.animate(
+									[
+										{ opacity: 1 },
+										{ opacity: 0 }
+									], {
+										duration: 500
+									}
+								);
+								endingAnimation.onfinish = () => {
+									this.$.loader.style.display = 'none';
+								}
 							}, this.duration);
 						}
 
